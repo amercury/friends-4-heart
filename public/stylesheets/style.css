@@ -1,0 +1,16 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  color: #00B7FF;
+}
+footer,header{
+  flex-shrink: 0;
+}
+.empty-space{
+  flex: 1 0 auto;
+}
