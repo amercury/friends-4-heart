@@ -7,7 +7,6 @@ document.patientForm.addEventListener('submit', async (event) => {
 
   res.name = event.target.name.value;
   res.diagnosis = event.target.diagnosis.value;
-  debugger;
   const req = await fetch('/patients/', {
     method: 'POST',
     headers: {
@@ -17,7 +16,7 @@ document.patientForm.addEventListener('submit', async (event) => {
   });
   const response = await req.json();
   if (response.success) {
-    window.location.reload();
+    window.location = '/';
   } else {
     alert(response.err);
   }
