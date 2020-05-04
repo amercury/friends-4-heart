@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 const Patient = require('../models/patient');
 const Questions = require('../models/question');
+const { User } = require('../models/user');
 const auth = require('../middleware/auth');
 
 router.get('/new', auth, async (req, res) => {
@@ -14,16 +15,23 @@ router.get('/new', auth, async (req, res) => {
 
 router.post('/', auth, async (req, res) => {
   const { diagnosis, name, test } = req.body;
-  const Questions = await Questions.find()
-  
-  debugger
-  const recomends = test.map(async (e) => {
-    if (e.value) {
-      const q = await Questions.findById(e.id);
-      return q.answerTrue;
-    }
-    const q = await Questions.findById(e.id);
-    return q.answerFalse;
+
+  const recomends = [];
+  for (let i = 0; i < test.length; i += 1) {
+    const ans = await Questions.findById(test[i].id);
+    recomends.push(test[i].value ? ans.answerTrue : ans.answerFalse);
+  }
+  const newPatient = new Patient({
+    name,
+    diagnosis,
+    reccomends: recomends,
+  });
+  await newPatient.save();
+  const user = await User.findById(req.session.user.id);
+  user.patients.push(newPatient.id);
+  await user.save();
+  res.json({
+    success: true,
   });
 
 });
@@ -31,9 +39,7 @@ router.post('/', auth, async (req, res) => {
 router.get('/:id', auth, async (req, res) => {
   const { id } = req.params;
   const patient = await Patient.findById({ _id: id });
-  res.render('newPatient', {
-    patient,
-  });
+  res.render('newPatient', { patient });
 });
 
 router.delete('/:id', auth, async (req, res) => {
