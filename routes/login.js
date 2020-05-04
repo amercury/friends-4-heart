@@ -9,7 +9,7 @@ router.post('/', async (req, res) => {
   const user = await User.findOne({ username: req.body.username });
   if (user.password && user.password === req.body.password) {
     req.session.username = user.username;
-    req.session.isAuthenticated = true;
+    req.session.auth = true;
   }
   res.redirect('/');
 });

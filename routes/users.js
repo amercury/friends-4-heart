@@ -1,39 +1,39 @@
 const express = require('express');
+
 const router = express.Router();
-const { User } = require('../models/User');
-const auth = require('../middleware/auth')
+const { User } = require('../models/user');
+const auth = require('../middleware/auth');
 
 router.get('/', auth, (req, res) => {
-  res.render('')
-})
+  res.render('');
+});
 
 
 router.get('/all', async (req, res) => {
-  const users = await User.find()
+  const users = await User.find();
   try {
     res.json({
-      users
-    })
+      users,
+    });
   } catch (error) {
     res.json({
-      error
-    })
+      error,
+    });
   }
-})
+});
 
 router.get('/:id', async (req, res) => {
-  const id = req.params.id
-  const user = await User.findById({ _id: id })
+  const { id } = req.params;
+  const user = await User.findById({ _id: id });
   try {
     res.json({
-      user
-    })
+      user,
+    });
   } catch (error) {
     res.json({
-      error
-    })
+      error,
+    });
   }
-})
+});
 
 module.exports = router;
-

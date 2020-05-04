@@ -7,20 +7,19 @@ const logger = require('morgan');
 const session = require('express-session');
 const MongoStore = require('connect-mongodb-session')(session);
 const methodOverride = require('method-override');
-
+require('dotenv').config();
 
 const indexRouter = require('./routes/index');
-const loginRouter = require('./routes/login');
-const logoutRouter = require('./routes/logout');
-const regRouter = require('./routes/reg');
-const usersRouter = require('./routes/users')
-const questionsRouter = require('./routes/questions')
-const patientsRouter = require('./routes/patients')
-
+// const loginRouter = require('./routes/login');
+// const logoutRouter = require('./routes/logout');
+// const regRouter = require('./routes/reg');
+// const usersRouter = require('./routes/users');
+// const questionsRouter = require('./routes/questions');
+// const patientsRouter = require('./routes/patients');
 
 
 // MongoDB connection
-const MONGODB_URI = 'mongodb://localhost:27017/newBlog';
+const { MONGODB_URI } = process.env;
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 const app = express();
 
@@ -69,12 +68,12 @@ app.use(methodOverride((req, res) => {
 
 // Connect routes
 app.use('/', indexRouter);
-app.use('/reg', regRouter);
-app.use('/login', loginRouter);
-app.use('/logout', logoutRouter);
-app.use('/users', usersRouter);
-app.use('/questions', questionsRouter);
-app.use('/patients', patientsRouter);
+// app.use('/reg', regRouter);
+// app.use('/login', loginRouter);
+// app.use('/logout', logoutRouter);
+// app.use('/users', usersRouter);
+// app.use('/questions', questionsRouter);
+// app.use('/patients', patientsRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
