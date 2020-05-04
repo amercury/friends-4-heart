@@ -15,12 +15,26 @@ router.get('/new', auth, async (req, res) => {
 
 router.post('/', auth, async (req, res) => {
   const { diagnosis, name, test } = req.body;
+  const qw = await Questions.find();
+  let recomends = [];
 
-  const recomends = [];
   for (let i = 0; i < test.length; i += 1) {
-    const ans = await Questions.findById(test[i].id);
-    recomends.push(test[i].value ? ans.answerTrue : ans.answerFalse);
+    const ans = qw.find((el) => el.id === test[i].id);
+    debugger
+    if (test[i].value === 'true') {
+      recomends.push({
+        text: ans.answerTrue[0],
+        link: ans.answerTrue[1],
+      });
+    } else {
+      recomends.push({
+        text: ans.answerFalse[0],
+        link: ans.answerFalse[1],
+      });
+    }
   }
+  recomends = recomends.filter((el) => !!el.text);
+
   const newPatient = new Patient({
     name,
     diagnosis,
@@ -33,13 +47,12 @@ router.post('/', auth, async (req, res) => {
   res.json({
     success: true,
   });
-
 });
 
 router.get('/:id', auth, async (req, res) => {
   const { id } = req.params;
   const patient = await Patient.findById({ _id: id });
-  res.render('newPatient', { patient });
+  res.render('patient', { patient });
 });
 
 router.delete('/:id', auth, async (req, res) => {
