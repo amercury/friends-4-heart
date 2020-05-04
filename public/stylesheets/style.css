@@ -14,3 +14,7 @@ footer,header{
 .empty-space{
   flex: 1 0 auto;
 }
+
+.patient-wrapper {
+  margin-top: 1.5rem;
+}
