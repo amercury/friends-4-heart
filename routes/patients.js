@@ -15,6 +15,7 @@ router.get('/new', auth, async (req, res) => {
 
 router.post('/', auth, async (req, res) => {
   const { diagnosis, name, test } = req.body;
+
   const recomends = [];
   for (let i = 0; i < test.length; i += 1) {
     const ans = await Questions.findById(test[i].id);
@@ -32,6 +33,7 @@ router.post('/', auth, async (req, res) => {
   res.json({
     success: true,
   });
+
 });
 
 router.get('/:id', auth, async (req, res) => {

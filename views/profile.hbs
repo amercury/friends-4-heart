@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row">
+    <ul class="collection with-header">
+      <li class="collection-header">
+        <h4>{{name}}</h4>
+      </li>
+      <li class="collection-item">email: {{email}}</li>
+      <li class="collection-item">диагноз: {{diagnosis}}</li>
+    </ul>
+  </div>
+  <div class="row">
+    <h3 class="recomendation">Персональная рекомендация:</h3>
+    <ul class="recomendation__list">
+      {{#each recomendations}}
+      <li class="recomendation__item">
+        <p>{{this.text}}</p>
+        <span>Подробная памятка: <a href={{this.link}}>ссылка</a></span>
+      </li>
+      {{/each}}
+    </ul>
+  </div>
+</div>
