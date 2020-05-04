@@ -9,10 +9,8 @@ router.get('/', auth, async (req, res) => {
   const Patients = await User.findById({ _id: id }).populate('patients')
 
   res.render('index', {
-    Patients,
-    isName: req.session.user.name
-  })
+  });
+});
 
-})
 
 module.exports = router;
