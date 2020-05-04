@@ -1,62 +1,51 @@
 <div class="container">
   <div class="row">
-    <div class="newPatient-wrapper">
-      <form class="col s12">
+    <form name="patientForm" class="col s12">
+      <div class="newPatient-wrapper">
         <div class="row">
           <div class="input-field col s6 offset-s3">
-            <input id="first_name" type="text" class="validate">
+            <input id="first_name" type="text" name="name" class="validate">
             <label for="first_name">Имя Пациента</label>
           </div>
         </div>
-        <div class="row">
+        {{!-- <div class="row">
           <div class="input-field col s6 offset-s3">
             <input id="age" type="text" class="validate">
             <label for="age">Возраст</label>
           </div>
-        </div>
+        </div> --}}
         <div class="row">
           <div class="input-field col s6 offset-s3">
-            <input id="diagnosis" type="text" class="validate">
+            <input id="diagnosis" type="text" name="diagnosis" class="validate">
             <label for="diagnosis">Диагноз</label>
           </div>
         </div>
-      </form>
-    </div>
-    <div class="input-field col s6 offset-s3">
-      <h4>Вопросы:</h4>
-      <form action="#">
-        <p>Вопрос №1</p>
+
+      </div>
+      <div class="input-field col s6 offset-s3">
+        <h4>Вопросы:</h4>
+
+        {{#each questions}}
+        <p>{{question}}</p>
         <p>
           <label>
-            <input id="{{id}}" name="Yes" type="radio" checked />
+            <input value="true" name="{{id}}" type="radio" checked />
             <span>Да</span>
           </label>
         </p>
         <p>
           <label>
-            <input name="No" type="radio" />
+            <input name="{{id}}" value="false" type="radio" />
             <span>Нет</span>
           </label>
         </p>
-      </form>
-      <form action="#">
-        <p>Вопрос №2</p>
-        <p>
-          <label>
-            <input name="group1" type="radio" checked />
-            <span>Да</span>
-          </label>
-        </p>
-        <p>
-          <label>
-            <input name="group1" type="radio" />
-            <span>Нет</span>
-          </label>
-        </p>
+        {{/each}}
         <button class="btn waves-effect waves-light" type="submit" name="action">Отправить
           <i class="material-icons right">send</i>
         </button>
-      </form>
-    </div>
+    </form>
   </div>
 </div>
+</div>
+
+<script defer src="/javascripts/patientAdd.js"></script>
