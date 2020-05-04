@@ -1,33 +1,49 @@
 const express = require('express');
 const router = express.Router();
 const { Patient } = require('../models/Patient');
+const { Questions } = require('../models/Questions');
+const auth = require('../middleware/auth')
 
-router.post('/', async (req, res) => {
-  const questions = await Question.find()
-  try {
-    res.json({
-      questions
-    })
-  } catch (error) {
-    res.json({
-      error
-    })
-  }
-})
+router.get('/new', auth, async (req, res) => {
+  const questions = await Questions.find()
+  res.render('newPatient', {
+    questions
+  })
+});
 
-router.get('/:id', async (req, res) => {
+router.get('/change/:id', auth, async (req, res) => {
   const id = req.params.id
-  const question = await Question.findById({ _id: id })
-  try {
-    res.json({
-      question
-    })
-  } catch (error) {
-    res.json({
-      error
-    })
-  }
-})
+  const patient = await Patient.findById({ _id: id })
+  res.render('newPatient', {
+    patient
+  })
+});
 
+router.delete('/change/:id', auth, async (req, res) => {
+  const id = req.params.id
+  try {
+    await Patient.findOneAndRemove({ _id: id })
+    res.redirect('/')
+  } catch (error) {
+    res.json({ message: "cant remove" })
+  }
+});
+
+router.put('/change/:id', auth, async (req, res) => {
+  const id = req.params.id
+  const { name, age, disease, form } = req.body
+  try {
+    await Patient.findOneAndUpdate({ _id: id }, {
+      name,
+      age,
+      disease,
+      form
+    })
+    res.redirect('/')
+  } catch (error) {
+    res.json({ message: "cant change" })
+  }
+
+});
 
 module.exports = router;
