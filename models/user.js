@@ -23,10 +23,10 @@ const userSchema = mongoose.Schema({
 });
 
 userSchema.pre('save', function (next) {
-  if (this.isModified('password') || this.isNew()) {
+  if (this.isModified('password') || this.isNew) {
     this.password = bcrtypt.hashSync(this.password, 12);
   }
   next();
 });
-
-module.exports = mongoose.model('User', userSchema);
+const User = mongoose.model('User', userSchema);
+module.exports = { User };

@@ -1,13 +1,13 @@
 const express = require('express');
 
 const router = express.Router();
-const { User } = require('../models/User');
+const { User } = require('../models/user');
 // const { Patient } = require('../models/Patient');
-const auth = require('../middleware/auth')
+const auth = require('../middleware/auth');
 
 
 router.get('/all', auth, async (req, res) => {
-  const users = await User.find()
+  const users = await User.find();
 
   try {
     res.json({

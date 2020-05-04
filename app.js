@@ -10,12 +10,12 @@ const methodOverride = require('method-override');
 require('dotenv').config();
 
 const indexRouter = require('./routes/index');
-// const loginRouter = require('./routes/login');
-// const logoutRouter = require('./routes/logout');
-// const regRouter = require('./routes/reg');
-// const usersRouter = require('./routes/users');
-// const questionsRouter = require('./routes/questions');
-// const patientsRouter = require('./routes/patients');
+const loginRouter = require('./routes/login');
+const logoutRouter = require('./routes/logout');
+const regRouter = require('./routes/reg');
+const usersRouter = require('./routes/users');
+const questionsRouter = require('./routes/questions');
+const patientsRouter = require('./routes/patients');
 
 
 // MongoDB connection
@@ -68,12 +68,12 @@ app.use(methodOverride((req, res) => {
 
 // Connect routes
 app.use('/', indexRouter);
-// app.use('/reg', regRouter);
-// app.use('/login', loginRouter);
-// app.use('/logout', logoutRouter);
-// app.use('/users', usersRouter);
-// app.use('/questions', questionsRouter);
-// app.use('/patients', patientsRouter);
+app.use('/reg', regRouter);
+app.use('/login', loginRouter);
+app.use('/logout', logoutRouter);
+app.use('/users', usersRouter);
+app.use('/questions', questionsRouter);
+app.use('/patients', patientsRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

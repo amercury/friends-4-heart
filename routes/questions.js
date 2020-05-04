@@ -1,33 +1,34 @@
 const express = require('express');
+
 const router = express.Router();
-const { Question } = require('../models/Question');
+const { Question } = require('../models/question');
 
 
 router.get('/all', async (req, res) => {
-  const questions = await Question.find()
+  const questions = await Question.find();
   try {
     res.json({
-      questions
-    })
+      questions,
+    });
   } catch (error) {
     res.json({
-      error
-    })
+      error,
+    });
   }
-})
+});
 
 router.get('/:id', async (req, res) => {
-  const id = req.params.id
-  const question = await Question.findById({ _id: id })
+  const { id } = req.params;
+  const question = await Question.findById({ _id: id });
   try {
     res.json({
-      question
-    })
+      question,
+    });
   } catch (error) {
     res.json({
-      error
-    })
+      error,
+    });
   }
-})
+});
 
 module.exports = router;

@@ -1,15 +1,18 @@
 const express = require('express');
-const auth = require('../middleware/auth')
+
 const router = express.Router();
 
 /* GET home page. */
 
-router.get('/', auth, async (req, res) => {
-  const id = req.session.user.id
-  const Patients = await User.findById({ _id: id }).populate('patients')
+router.get('/', async (req, res) => {
+  if (req.session.auth) {
+    return res.redirect('/profile/user');
+    // const { id } = req.session.user;
+    // const patients = await User.findById({ _id: id }).populate('patients');
+    // return res.render('profile', { patients });
+  }
 
-  res.render('index', {
-  });
+  res.render('index', {});
 });
 
 
