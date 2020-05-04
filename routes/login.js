@@ -12,6 +12,7 @@ router.post('/', async (req, res) => {
       name: user.name,
       id: user._id,
       email: user.email,
+      patients: user.patients,
     };
 
     req.session.auth = true;

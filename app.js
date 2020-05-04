@@ -16,6 +16,7 @@ const regRouter = require('./routes/reg');
 const usersRouter = require('./routes/users');
 const questionsRouter = require('./routes/questions');
 const patientsRouter = require('./routes/patients');
+const profileRouter = require('./routes/profile.js');
 
 
 // MongoDB connection
@@ -74,6 +75,7 @@ app.use('/logout', logoutRouter);
 app.use('/users', usersRouter);
 app.use('/questions', questionsRouter);
 app.use('/patients', patientsRouter);
+app.use('/profile', profileRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

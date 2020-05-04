@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get('/', async (req, res) => {
   if (req.session.auth) {
-    return res.redirect('/profile/user');
+    return res.redirect('/profile/');
     // const { id } = req.session.user;
     // const patients = await User.findById({ _id: id }).populate('patients');
     // return res.render('profile', { patients });
