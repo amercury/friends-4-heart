@@ -1,16 +1,18 @@
 <div class="patient-wrapper">
   <div class="container">
-      <div class="row">
-    <a href="/patients/new" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
-    <ul class="collection">
-      {{#each patients}}
-      <li class="collection-item avatar">
-        <i class="material-icons circle green">assignment_ind</i>
-        <span class="title">{{name}}</span>
-        <a href="/patients/{{id}}" class="secondary-content waves-effect waves-light btn-small">Перейти к пациенту</a>
-      </li>
-      {{/each}}
-    </ul>
-  </div>
+    <div class="row">
+      <a href="/patients/new" class="btn-floating btn-large waves-effect waves-light red"><i
+          class="material-icons">add</i></a>
+      <div class="collectionWrap">
+        {{#each patients}}
+        <div class="collection-item avatar">
+          <div class="avatar"><img src="/images/user.png" alt="IMG"></div>
+          <span class="title">{{name}}</span>
+          <a href="/patients/{{id}}" class="secondary-content waves-effect waves-light btn-small">Перейти к пациенту</a>
+          <a class="deleteItem" href="/patients/delete/{{id}}">X</a>
+        </div>
+        {{/each}}
+      </div>
+    </div>
   </div>
 </div>

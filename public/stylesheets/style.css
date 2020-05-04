@@ -1,8 +1,17 @@
+body, html, section, .background {
+  height: 100%;
+}
+.background {
+  background:url('../images/back3.jpg') center center no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+}
+
 body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 
 a {
@@ -17,4 +26,99 @@ footer,header{
 
 .patient-wrapper, .newPatient-wrapper {
   margin-top: 1.5rem;
+}
+
+.page-footer {
+  padding-top: 0px;
+}
+
+.title-head, .title-head-text {
+  color: aliceblue !important; 
+  margin: 0px;
+}
+
+.title-head-text {
+  font-size: 16px;
+  max-width: 300px;
+} 
+
+.wrapHeader {
+  max-width: 300px;
+  background: #ee6e72ec;
+  padding: 20px;
+  border-radius: 30px 0px;
+}
+
+.logo-4 {
+  font-size: 26px;
+  color: rgb(255, 30, 0);
+}
+
+.brand-logo {
+  font-size: 16px !important;
+}
+
+.collection {
+  padding: 20px
+}
+
+#singIn, #singOut {
+  max-width: 380px;
+}
+
+.btn, .btn:active {
+  background: brown;
+}
+
+.btn:hover {
+  background: rgb(236, 104, 104);
+}
+
+a.secondary-content, a.secondary-content:active {
+  background: brown;
+  margin-bottom: 20px;
+}
+
+a.secondary-content:hover {
+  background: rgb(236, 104, 104);
+}
+
+.collectionWrap .collection-item {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  margin: 20px;
+  box-shadow: 0 4px 4px 0 rgba(0,0,0,0.14);
+  text-align: center;
+  padding: 15px;
+  font-size: 28px;
+  position: relative;
+}
+
+.recomendation__item {
+  box-shadow: 0 4px 4px 0 rgba(0,0,0,0.14);
+  padding: 10px;
+  margin: 10px 0px;
+}
+
+
+.collectionWrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.collection-item i {
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+}
+
+.deleteItem {
+  position: absolute;
+  color: black;
+  font-size: 18px;
+  right: 20px;
+  font-weight: 300;
+  font-family: Arial, Helvetica, sans-serif
 }

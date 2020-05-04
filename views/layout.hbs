@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>Friends 4 heart</title>
+  <title>friends 4 heart</title>
   <link rel="shortcut icon" href="images/titleIcon.ico" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -14,34 +14,55 @@
 </head>
 
 <body>
-  <nav>
-    <div class="nav-wrapper">
+  <header>
+    <nav>
+      <div class="nav-wrapper">
+        <div class="container">
+          <div class="row">
+            <a href="/" class="brand-logo">
+              <span class="logo-left">friends</span>
+              <span class="logo-4">4</span>
+              <span class="logo-right">heart</span></a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+              <li><a href="/">Главная</a></li>
+              {{#if auth}}
+              <li><a href="/">{{user.name}}</a></li>
+              <li><a href="/logout">Выйти</a></li>
+              {{else}}
+              <li><a class="waves-effect modal-trigger" href="#singIn">Войти</a></li>
+              <li><a class="waves-effect modal-trigger" href="#singOut">Регистрация</a></li>
+              {{/if}}
+
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+    {{!-- mobile menu --}}
+    <ul id="mobile-demo" class="sidenav">
+      {{#if auth}}
+      <li><a href="/">{{user.name}}</a></li>
+      <li><a href="/logout">Выйти</a></li>
+      {{else}}
+      <li><a class="waves-effect modal-trigger" href="#singIn">Войти</a></li>
+      <li><a class="waves-effect modal-trigger" href="#singOut">Регистрация</a></li>
+      {{/if}}
+      <li><a href="/">Главная</a></li>
+    </ul>
+  </header>
+
+  {{!-- Main info --}}
+  {{{body}}}
+
+  {{!-- Footer --}}
+  <footer class="page-footer">
+    <div class="footer-copyright">
       <div class="container">
-        <a href="/" class="brand-logo">Friends 4 heart</a>
-        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-          {{#if auth}}
-          <li><a href="/">{{user.name}}</a></li>
-          <li><a href="/logout">Logout</a></li>
-          {{else}}
-          <li><a class="waves-effect modal-trigger" href="#singIn">Sing in</a></li>
-          <li><a class="waves-effect modal-trigger" href="#singOut">Sing up</a></li>
-          {{/if}}
-          <li><a href="/">Home</a></li>
-        </ul>
+        © 2020
       </div>
     </div>
-  </nav>
-  <ul id="mobile-demo" class="sidenav">
-    {{#if auth}}
-    <li><a href="/">{{user.name}}</a></li>
-    <li><a href="/logout">Logout</a></li>
-    {{else}}
-    <li><a class="waves-effect modal-trigger" href="#singIn">Sing in</a></li>
-    <li><a class="waves-effect modal-trigger" href="#singOut">Sing up</a></li>
-    {{/if}}
-    <li><a href="/">Home</a></li>
-  </ul>
+  </footer>
 
   {{!-- Modal forms --}}
   <div id="singIn" class="modal">
@@ -49,12 +70,11 @@
       <div class="row">
         <div class="col s12">
           <form action="/login" method="POST" name="loginForm">
-
             <div class="row">
               <div class="input-field s12">
                 <i class="material-icons prefix">mail</i>
                 <input placeholder="Ivan" id="email" type="email" name="email" class="validate">
-                <label for="email">Email</label>
+                <label for="email">Почта</label>
               </div>
             </div>
 
@@ -62,13 +82,13 @@
               <div class="input-field s12">
                 <i class="material-icons prefix">lock</i>
                 <input id="passwordIn" type="password" name="password" class="validate">
-                <label for="passwordIn">Password</label>
+                <label for="passwordIn">Пароль</label>
               </div>
             </div>
 
             <div class="row">
               <div class="col s12 center">
-                <button class="btn waves-effect waves-light" type="submit" name="action">Sing in
+                <button class="btn waves-effect waves-light" type="submit" name="action">Отправить
                   <i class="material-icons right">send</i>
                 </button>
               </div>
@@ -89,14 +109,14 @@
               <div class="input-field s12">
                 <i class="material-icons prefix">account_circle</i>
                 <input placeholder="Ivan" id="username" type="text" name="username" class="validate">
-                <label for="username">Username</label>
+                <label for="username">Имя</label>
               </div>
             </div>
             <div class="row">
               <div class="input-field s12">
                 <i class="material-icons prefix">mail</i>
                 <input placeholder="Ivan" id="email" type="email" name="email" class="validate">
-                <label for="email">Email</label>
+                <label for="email">Почта</label>
               </div>
             </div>
 
@@ -104,7 +124,7 @@
               <div class="input-field s12">
                 <i class="material-icons prefix">lock</i>
                 <input id="password" type="password" name="password" class="validate">
-                <label for="password">Password</label>
+                <label for="password">Пароль</label>
               </div>
             </div>
 
@@ -112,13 +132,13 @@
               <div class="input-field s12">
                 <i class="material-icons prefix">repeat</i>
                 <input id="passwordRep" type="password" name="passwordRep" class="validate">
-                <label for="passwordRep">Repeat password</label>
+                <label for="passwordRep">Повторите пароль</label>
               </div>
             </div>
 
             <div class="row">
               <div class="col s12 center">
-                <button class="btn waves-effect waves-light" type="submit" name="action">Sing in
+                <button class="btn waves-effect waves-light" type="submit" name="action">Отправить
                   <i class="material-icons right">send</i>
                 </button>
               </div>
@@ -129,20 +149,6 @@
       </div>
     </div>
   </div>
-
-  {{!-- Main info --}}
-  {{{body}}}
-  <div class="empty-space"></div>
-
-  {{!-- Footer --}}
-  <footer class="page-footer">
-    <div class="footer-copyright">
-      <div class="container">
-        © 2020
-      </div>
-    </div>
-  </footer>
-
 </body>
 
 </html>

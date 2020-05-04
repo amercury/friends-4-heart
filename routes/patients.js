@@ -55,11 +55,11 @@ router.get('/:id', auth, async (req, res) => {
   res.render('patient', { patient });
 });
 
-router.delete('/:id', auth, async (req, res) => {
+router.get('/delete/:id', auth, async (req, res) => {
   const { id } = req.params;
   try {
     await Patient.findOneAndRemove({ _id: id });
-    res.redirect('/');
+    res.redirect('/profile');
   } catch (error) {
     res.json({ message: 'cant remove' });
   }
