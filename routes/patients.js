@@ -14,6 +14,9 @@ router.get('/new', auth, async (req, res) => {
 
 router.post('/', auth, async (req, res) => {
   const { diagnosis, name, test } = req.body;
+  const Questions = await Questions.find()
+  
+  debugger
   const recomends = test.map(async (e) => {
     if (e.value) {
       const q = await Questions.findById(e.id);
@@ -22,7 +25,7 @@ router.post('/', auth, async (req, res) => {
     const q = await Questions.findById(e.id);
     return q.answerFalse;
   });
-  debugger;
+
 });
 
 router.get('/:id', auth, async (req, res) => {
