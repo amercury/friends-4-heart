@@ -8,6 +8,7 @@ const session = require('express-session');
 const MongoStore = require('connect-mongodb-session')(session);
 const methodOverride = require('method-override');
 
+
 const indexRouter = require('./routes/index');
 const loginRouter = require('./routes/login');
 const logoutRouter = require('./routes/logout');
@@ -50,6 +51,7 @@ app.use((req, res, next) => {
   res.locals.username = req.session.username;
   next();
 });
+
 
 // Allows you to use PUT, DELETE with forms.
 app.use(methodOverride((req, res) => {
