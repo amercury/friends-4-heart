@@ -1,16 +1,14 @@
 const express = require('express');
 
 const router = express.Router();
-const { User } = require('../models/user');
-const auth = require('../middleware/auth');
-
-router.get('/', auth, (req, res) => {
-  res.render('');
-});
+const { User } = require('../models/User');
+// const { Patient } = require('../models/Patient');
+const auth = require('../middleware/auth')
 
 
-router.get('/all', async (req, res) => {
-  const users = await User.find();
+router.get('/all', auth, async (req, res) => {
+  const users = await User.find()
+
   try {
     res.json({
       users,
@@ -25,6 +23,7 @@ router.get('/all', async (req, res) => {
 router.get('/:id', async (req, res) => {
   const { id } = req.params;
   const user = await User.findById({ _id: id });
+
   try {
     res.json({
       user,

@@ -51,7 +51,7 @@ app.use(session({
 // Save session in locals
 app.use((req, res, next) => {
   res.locals.auth = req.session.auth;
-  res.locals.username = req.session.username;
+  res.locals.user = req.session.user;
   next();
 });
 
