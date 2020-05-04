@@ -15,6 +15,6 @@ footer,header{
   flex: 1 0 auto;
 }
 
-.patient-wrapper {
+.patient-wrapper, .newPatient-wrapper {
   margin-top: 1.5rem;
 }
