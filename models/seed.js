@@ -1,10 +1,13 @@
 const mongoose = require('mongoose');
+require('dotenv').config();
+
+const { MONGODB_URI } = process.env;
 
 const User = require('./user');
 const Patient = require('./patient');
 const Question = require('./question');
 
-mongoose.connect('mongodb+srv://user:elbrusboot.camp@frienf4heart-nis7g.mongodb.net/f4h', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 
 async function seedIt() {
